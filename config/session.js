@@ -26,7 +26,7 @@ module.exports = {
   | are signed and encrypted.
   |
   */
-  cookieName: 'adonis-session',
+  cookieName: 'tinyurl-session',
 
   /*
   |--------------------------------------------------------------------------
@@ -37,7 +37,7 @@ module.exports = {
   | removed when browser closes.
   |
   */
-  clearWithBrowser: true,
+  clearWithBrowser: false,
 
   /*
   |--------------------------------------------------------------------------
@@ -52,7 +52,7 @@ module.exports = {
   |  '2h', '10d', '5y', '2.5 hrs'
   |
   */
-  age: '2h',
+  age: '10y',
 
   /*
   |--------------------------------------------------------------------------
@@ -66,7 +66,7 @@ module.exports = {
   cookie: {
     httpOnly: true,
     sameSite: false,
-    path: '/'
+    path: '/',
   },
 
   /*
@@ -79,7 +79,7 @@ module.exports = {
   |
   */
   file: {
-    location: 'sessions'
+    location: 'sessions',
   },
 
   /*
@@ -96,6 +96,6 @@ module.exports = {
     port: 6379,
     password: null,
     db: 0,
-    keyPrefix: ''
-  }
+    keyPrefix: '',
+  },
 }
