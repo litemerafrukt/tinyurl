@@ -1,0 +1,21 @@
+{
+  "env": {
+    "node": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 2018
+  },
+  "extends": ["eslint:recommended", "prettier"],
+  "rules": {
+    "strict": "off",
+    "quotes": ["error", "single"],
+    "semi": ["error", "never"],
+    "class-methods-use-this": "off",
+    "global-require": "off",
+    "arrow-parens": ["error", "as-needed"],
+    "no-param-reassign": ["error", { "props": false }]
+  },
+  "globals": {
+    "use": true
+  }
+}
