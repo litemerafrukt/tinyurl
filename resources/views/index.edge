@@ -1,0 +1,32 @@
+@layout('layout')
+
+@section('content')
+  <h1>
+    Tinyfy!
+  </h1>
+
+  @if(old('notification'))
+    <div>
+      <p>
+        {{ old('notification') }}
+      </p>
+    </div>
+  @endif
+
+  <form action="/tinyfy" method="POST">
+    {{ csrfField() }}
+
+    <div style="display: flex; justify-content: space-between;">
+      <div>
+        <input type="text" name="url" value="{{ old('url', '') }}" placeholder="url">
+      </div>
+      <div>
+        <button type="submit">
+          Shorten
+        </button>
+      </div>
+    </div>
+  </form>
+
+  {{ elIf('<p class="error">$self</p>', getErrorFor('url'), hasErrorFor('url')) }}
+@endsection
