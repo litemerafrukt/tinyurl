@@ -40,3 +40,7 @@ section {
   box-shadow: none;
   background: transparent;
 }
+
+.copy-success {
+  background-color: #bae9bb;
+}
