@@ -2,9 +2,12 @@
 
 const clipboardy = require('clipboardy')
 const { test, trait } = use('Test/Suite')('Main')
+const Config = use('Config')
+const Url = use('App/Models/Url')
+const hashid = require('../../app/utils/hashid')
 
 trait('Test/Browser')
-
+trait('Test/ApiClient')
 trait('DatabaseTransactions')
 
 test('Should show main page', async ({ browser }) => {
@@ -88,4 +91,17 @@ test('User should be able to copy the shortened url to clipboard with copy butto
   )
 
   assert.equal(clipboardy.readSync(), tinyTestUrl)
+})
+
+test('Should redirect when supplied tinyUrl', async ({ assert, client }) => {
+  const appUrl = Config.get('app.appUrl')
+  const url = new Url()
+  url.full = appUrl
+  await url.save()
+
+  const hashed = hashid.encode(url.id)
+
+  const response = await client.get(`/${hashed}`).end()
+
+  assert.equal(response._res.redirects[0], `${appUrl}/`)
 })
