@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css?family=Montserrat:300');
-
 html,
 body {
   height: 100%;
@@ -7,29 +5,67 @@ body {
 }
 
 body {
-  color: #002b55;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 300;
+  color: #455a64;
 }
 
-* {
+h1 {
+  font-weight: 200;
   margin: 0;
-  padding: 0;
+  padding: 2.8rem 0 1.68rem 0;
 }
 
 section {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  max-width: 536px;
+  max-width: 713px;
   margin: auto;
-  position: relative;
 }
 
-.error {
-  color: red;
+.closeable {
+  cursor: pointer;
+}
+
+.close-notification {
+  cursor: pointer;
+  font-size: x-small;
+  vertical-align: top;
+}
+
+.tinyfy-form {
+  display: flex;
+  align-items: center;
+}
+
+.row .tinyfy-form-input {
+  padding-left: 0;
+}
+
+.tiny-url-list {
+  list-style: none;
+}
+
+.tiny-url-list-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: nowrap;
+}
+
+.tiny-url-list-original-link {
+  flex-grow: 1;
+  text-overflow: ellipsis;
+  margin-right: 0.75rem;
+}
+
+.tiny-url-list-tiny-group {
+  white-space: nowrap;
+}
+
+.tiny-url-list-copy-button {
+  margin-left: 0.75rem;
+  width: 85px;
+}
+
+.tinyfy-error {
+  color: #f44336;
 }
 
 .copy-input {
@@ -41,6 +77,42 @@ section {
   background: transparent;
 }
 
-.copy-success {
-  background-color: #bae9bb;
+.tiny-url-list .tiny-url-list-item .tiny-url-list-tiny-group .copy-success {
+  background-color: #c5e1a5 !important;
+}
+
+.tiny-url-list .tiny-url-list-item .tiny-url-list-tiny-group .copy-fail {
+  background-color: #ef9a9a !important;
+}
+
+.cookie-consent {
+  display: flex;
+  align-items: center;
+  max-width: 713px;
+}
+
+.cookie-consent-button {
+  margin-left: 1.75rem;
+  min-width: 5rem;
+}
+
+@media (max-width: 727px) {
+  .cookie-consent,
+  section {
+    margin: 0 7px;
+  }
+}
+
+@media (max-width: 650px) {
+  .tiny-url-list-item {
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 1rem;
+    box-shadow: 0px 1px #eceff1;
+    padding-bottom: 1rem;
+  }
+
+  .tiny-url-list-tiny-group {
+    align-self: flex-end;
+  }
 }

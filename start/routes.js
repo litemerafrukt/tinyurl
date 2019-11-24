@@ -18,4 +18,5 @@ const Route = use('Route')
 
 Route.get('/', 'PagesController.index')
 Route.post('/tinyfy', 'DirectorController.store')
+Route.post('/okcookie', 'CookieConsentController.ok')
 Route.get('/:tinyurl', 'DirectorController.direct')

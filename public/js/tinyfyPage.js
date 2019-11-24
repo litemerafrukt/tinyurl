@@ -1,10 +1,14 @@
 ;(function() {
   'use strict'
   const copyButtons = document.querySelectorAll('.copy-button')
+  const closeables = document.querySelectorAll('.closeable')
 
   copyButtons.forEach(button => button.addEventListener('click', copyTinyUrl))
+  closeables.forEach(closeable =>
+    closeable.addEventListener('click', closeNotification, { once: true })
+  )
 
-  async function copyTinyUrl(event) {
+  function copyTinyUrl(event) {
     const button = event.target
     const tinyUrl = button.dataset.tinyUrl
     const textInput = document.createElement('input')
@@ -19,15 +23,19 @@
     const successful = document.execCommand('copy')
     document.body.removeChild(textInput)
 
-    const feedback = successful ? 'Copied!' : 'Failed :('
-    const feedbackClass = successful ? 'copy-success' : 'copy-fail'
+    const feedback = successful ? 'Copied' : 'Failed'
+    const feedbackClasses = successful ? 'copy-success' : 'copy-fail'
 
     const originalButtonText = button.innerText
-    button.classList.add(feedbackClass)
+    button.classList.add(feedbackClasses)
     button.innerText = feedback
     setTimeout(() => {
-      button.classList.remove(feedbackClass)
+      button.classList.remove(feedbackClasses)
       button.innerText = originalButtonText
     }, 1000)
+  }
+
+  function closeNotification(event) {
+    event.target.parentElement.remove()
   }
 })()

@@ -31,12 +31,12 @@ class DirectorController {
     await url.save()
 
     const hashedId = hashid.encode(url.id)
-    const tinyurls = session.get('tinyurls', [])
-    tinyurls.unshift({ hash: hashedId, url: url.full })
-    tinyurls.splice(10, 1000)
-    session.put('tinyurls', tinyurls)
+    const tinyUrls = session.get('tinyurls', [])
+    tinyUrls.unshift({ hash: hashedId, url: url.full })
+    tinyUrls.splice(10, 1000)
+    session.put('tinyurls', tinyUrls)
 
-    session.flash({ notification: 'Saved!' })
+    session.flash({ notification: 'Tinyfied!' })
 
     return response.redirect('back')
   }

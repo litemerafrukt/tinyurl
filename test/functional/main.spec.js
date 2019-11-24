@@ -12,6 +12,11 @@ test('Should show main page', async ({ browser }) => {
   await page.assertHas('TinyURL')
 })
 
+test('Should show cookie message', async ({ browser }) => {
+  const page = await browser.visit('/')
+  await page.assertHas('accept those cookies')
+})
+
 test('Should be able to shorten an url, redirect back and show tinyfied url', async ({
   browser,
 }) => {
@@ -20,7 +25,7 @@ test('Should be able to shorten an url, redirect back and show tinyfied url', as
 
   await page
     .type('[name="url"]', testUrl)
-    .submitForm('form')
+    .submitForm('form[action="/tinyfy"]')
     .waitForNavigation()
     .assertPath('/')
     .assertHas(testUrl)
@@ -45,7 +50,7 @@ test('User should see 10 latest urls', async ({ browser }) => {
   for (const url of urls) {
     await page
       .type('[name="url"]', url)
-      .submitForm('form')
+      .submitForm('form[action="/tinyfy"]')
       .waitForNavigation()
       .assertPath('/')
   }
@@ -64,7 +69,7 @@ test('User should be able to copy the shortened url to clipboard with copy butto
 
   await page
     .type('[name="url"]', testUrl)
-    .submitForm('form')
+    .submitForm('form[action="/tinyfy"]')
     .waitForNavigation()
     .click('button.copy-button')
 

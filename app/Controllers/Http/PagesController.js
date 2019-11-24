@@ -6,8 +6,9 @@ const appUrl = Config.get('app.appUrl')
 
 class PagesController {
   index({ view, session }) {
-    const tinyurls = session.get('tinyurls', [])
-    return view.render('index', { tinyurls, appUrl })
+    const tinyUrls = session.get('tinyurls', [])
+    const cookieConsent = session.get('cookieconsent', false)
+    return view.render('index', { tinyUrls, cookieConsent, appUrl })
   }
 }
 
