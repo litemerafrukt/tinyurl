@@ -1,8 +1,9 @@
 'use strict'
 
 const Url = use('App/Models/Url')
-const { validate } = use('Validator')
 const hashid = require('../../utils/hashid')
+const normalizeUrl = require('../../utils/normalizeUrl')
+const validateUrl = require('../../utils/validateUrl')
 
 class DirectorController {
   async direct({ params, response }) {
@@ -16,9 +17,8 @@ class DirectorController {
   }
 
   async store({ request, response, session }) {
-    const validation = await validate(request.all(), {
-      url: 'required|min:3',
-    })
+    const normalizedUrl = normalizeUrl(request.input('url'))
+    const validation = await validateUrl(normalizedUrl)
 
     if (validation.fails()) {
       session.withErrors(validation.messages()).flashAll()
@@ -27,11 +27,10 @@ class DirectorController {
     }
 
     const url = new Url()
-    url.full = request.input('url')
+    url.full = normalizedUrl
     await url.save()
 
     const hashedId = hashid.encode(url.id)
-
     const tinyurls = session.get('tinyurls', [])
     tinyurls.unshift({ hash: hashedId, url: url.full })
     tinyurls.splice(10, 1000)
