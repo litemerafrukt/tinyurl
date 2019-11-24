@@ -18,13 +18,13 @@ test('should be able to encode and then decode to same id', ({ assert }) => {
   assert.equal(decoded, id)
 })
 
-test('should encode two different ids to different hashes', ({ assert }) => {
+test('Should encode two different ids to different hashes', ({ assert }) => {
   const hash1 = hashid.encode(1)
   const hash2 = hashid.encode(2)
 
   assert.notEqual(hash1, hash2)
 })
 
-test('should throw on failing to decode', ({ assert }) => {
+test('Should throw on failing to decode', ({ assert }) => {
   assert.throws(() => hashid.decode(''), 'Invalid hash')
 })

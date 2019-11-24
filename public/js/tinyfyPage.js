@@ -14,8 +14,10 @@
     textInput.select()
     document.execCommand('copy')
     const successful = document.execCommand('copy')
+
     const msg = successful ? 'successful' : 'unsuccessful'
     console.log('Copying text command was ' + msg)
+
     document.body.removeChild(textInput)
   }
 })()
