@@ -30,17 +30,24 @@ module.exports = {
 
   /*
   |--------------------------------------------------------------------------
-  | App Key
+  | Short Url Alphabet
   |--------------------------------------------------------------------------
   |
-  | App key is a randomly generated 16 or 32 characters long string required
-  | to encrypted cookies, sessions and other sensitive data.
+  | Alphanumerics used in short url hashes.
   |
   */
   shortUrlAlphabet: Env.get(
     'SHORT_URL_ALPHABET',
     'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890'
   ),
+
+  /*
+  |--------------------------------------------------------------------------
+  | App Url
+  |--------------------------------------------------------------------------
+  |
+  */
+  appUrl: Env.getOrFail('APP_URL'),
 
   http: {
     /*

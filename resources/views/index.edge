@@ -25,8 +25,19 @@
           Shorten
         </button>
       </div>
+      {{ elIf('<p class="error">$self</p>', getErrorFor('url'), hasErrorFor('url')) }}
     </div>
   </form>
 
-  {{ elIf('<p class="error">$self</p>', getErrorFor('url'), hasErrorFor('url')) }}
+<ul>
+  @each(tinyurl in tinyurls)
+    <li>
+      <a href={{ tinyurl.url }}>{{ tinyurl.url }}</a>
+      <a href={{ appUrl + "/" + tinyurl.hash }}>{{ appUrl + "/" + tinyurl.hash }}</a>
+      <button type="button" class="copy-button" data-tiny-url={{ appUrl + "/" + tinyurl.hash }}>Copy</button>
+    </li>
+  @endeach
+</ul>
+
+{{ script('js/tinyfyPage') }}
 @endsection

@@ -30,10 +30,14 @@ class DirectorController {
     url.full = request.input('url')
     await url.save()
 
-    const hashedId = hashids.encode(url.id)
+    const hashedId = hashid.encode(url.id)
 
-    session.flash({ notification: `Saved! ${hashedId}` })
-    // session.flash({ notification: `Saved! ${url.id}` })
+    const tinyurls = session.get('tinyurls', [])
+    tinyurls.unshift({ hash: hashedId, url: url.full })
+    tinyurls.splice(10, 1000)
+    session.put('tinyurls', tinyurls)
+
+    session.flash({ notification: 'Saved!' })
 
     return response.redirect('back')
   }

@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css?family=Montserrat:300");
+@import url('https://fonts.googleapis.com/css?family=Montserrat:300');
 
 html,
 body {
@@ -8,7 +8,7 @@ body {
 
 body {
   color: #002b55;
-  font-family: "Montserrat", sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-weight: 300;
 }
 
@@ -30,4 +30,13 @@ section {
 
 .error {
   color: red;
+}
+
+.copy-input {
+  margin: 0;
+  padding: 0;
+  border: none;
+  outline: none;
+  box-shadow: none;
+  background: transparent;
 }
