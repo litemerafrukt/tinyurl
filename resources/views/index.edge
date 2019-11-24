@@ -1,53 +1,56 @@
 @layout('layout')
 
 @section('content')
-  <h1>
-    TinyURL
-  </h1>
+  @include('cookieconsent')
 
-  @if(old('notification'))
-    <p>
-      <span class="closeable" title="Close">
-        {{ old('notification') }}
-      </span>
-    </p>
-  @endif
+  <section>
+    <h1>
+      TinyURL
+    </h1>
 
-  <form action="/tinyfy" method="POST">
-    {{ csrfField() }}
+    @if(old('notification'))
+      <p>
+        <span class="closeable" title="Close">
+          {{ old('notification') }}
+        </span>
+      </p>
+    @endif
 
-    <div class="row">
-      <div class="tinyfy-form">
-        <div class="input-field col s12 tinyfy-form-input">
-          <input type="text" name="url" value="{{ old('url', '') }}" placeholder="url">
+    <form action="/tinyfy" method="POST">
+      {{ csrfField() }}
+
+      <div class="row">
+        <div class="tinyfy-form">
+          <div class="input-field col s12 tinyfy-form-input">
+            <input type="text" name="url" value="{{ old('url', '') }}" placeholder="url">
+          </div>
+          <div>
+            <button type="submit" class="waves-effect waves-light btn">
+              Shorten
+            </button>
+          </div>
         </div>
-        <div>
-          <button type="submit" class="waves-effect waves-light btn">
-            Shorten
-          </button>
-        </div>
+        {{ elIf('<p class="tinyfy-error"><span class="closeable" title="Close">$self</span></p>', getErrorFor('url'), hasErrorFor('url')) }}
       </div>
-      {{ elIf('<p class="tinyfy-error"><span class="closeable" title="Close">$self</span></p>', getErrorFor('url'), hasErrorFor('url')) }}
-    </div>
-  </form>
+    </form>
 
-<ul class="tiny-url-list">
-  @each(tinyUrl in tinyUrls)
-    <li class="row tiny-url-list-item">
-      <div class="tiny-url-list-original-link">
-        <a href={{ tinyUrl.url }}>{{ tinyUrl.url }}</a>
-      </div>
-      <div class="tiny-url-list-tiny-group">
-        <a class="tiny-url-list-tiny-link" href={{ appUrl + "/" + tinyUrl.hash }}>{{ appUrl + "/" + tinyUrl.hash }}</a>
-        <button
-          type="button"
-          class="copy-button tiny-url-list-copy-button btn blue-grey lighten-5 blue-grey-text text-darken-4 waves-effect waves-teal btn-flat btn-small"
-          data-tiny-url={{ appUrl + "/" + tinyUrl.hash }}
-        >Copy</button>
-      </div>
-    </li>
-  @endeach
-</ul>
-
+    <ul class="tiny-url-list">
+      @each(tinyUrl in tinyUrls)
+        <li class="row tiny-url-list-item">
+          <div class="tiny-url-list-original-link">
+            <a href={{ tinyUrl.url }}>{{ tinyUrl.url }}</a>
+          </div>
+          <div class="tiny-url-list-tiny-group">
+            <a class="tiny-url-list-tiny-link" href={{ appUrl + "/" + tinyUrl.hash }}>{{ appUrl + "/" + tinyUrl.hash }}</a>
+            <button
+              type="button"
+              class="copy-button tiny-url-list-copy-button btn blue-grey lighten-5 blue-grey-text text-darken-4 waves-effect waves-teal btn-flat btn-small"
+              data-tiny-url={{ appUrl + "/" + tinyUrl.hash }}
+            >Copy</button>
+          </div>
+        </li>
+      @endeach
+    </ul>
+  </section>
 {{ script('js/tinyfyPage') }}
 @endsection

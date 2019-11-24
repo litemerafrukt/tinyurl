@@ -1,5 +1,6 @@
 'use strict'
 
+const View = use('View')
 const Url = use('App/Models/Url')
 const hashid = require('../../utils/hashid')
 const normalizeUrl = require('../../utils/normalizeUrl')
@@ -12,7 +13,8 @@ class DirectorController {
       const url = await Url.findOrFail(id)
       return response.redirect(url.full, false, 301)
     } catch (_) {
-      return response.status(404).send('404')
+      const notFound = View.render('404')
+      response.status(404).send(notFound)
     }
   }
 

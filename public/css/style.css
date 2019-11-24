@@ -96,6 +96,11 @@ section {
   min-width: 5rem;
 }
 
+.not-found-message {
+  margin: auto;
+  max-width: 513px;
+}
+
 @media (max-width: 727px) {
   .cookie-consent,
   section {

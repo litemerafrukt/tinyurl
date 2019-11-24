@@ -17,6 +17,15 @@ test('Should show cookie message', async ({ browser }) => {
   await page.assertHas('accept those cookies')
 })
 
+test('Should show custom 404-page if url not found in db', async ({
+  browser,
+}) => {
+  const page = await browser.visit('/itsnotthere')
+  await page.assertHas(
+    '404\n\nWe are sorry to inform you that the requested url was not found.'
+  )
+})
+
 test('Should be able to shorten an url, redirect back and show tinyfied url', async ({
   browser,
 }) => {

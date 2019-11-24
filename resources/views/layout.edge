@@ -7,26 +7,6 @@
   {{ style('css/style') }}
 </head>
 <body>
-  @if(!cookieConsent)
-    <form action="/okcookie" method="POST">
-      {{ csrfField() }}
-
-      <div class="row cookie-consent">
-        <p>
-          To have a great experience on this site we need to place
-          some cookies in your browser.
-          By continuing to use this
-          site you implicitly accept those cookies.
-        </p>
-        <button type="submit" class="cookie-consent-button waves-effect waves-light btn">
-          Ok
-        </button>
-      </div>
-    </form>
-  @endif
-
-  <section>
-    @!section('content')
-  </section>
+  @!section('content')
 </body>
 </html>
