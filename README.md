@@ -2,6 +2,8 @@
 
 This is a url shortener web-app built with AdonisJS.
 
+[Demo](http://46.101.121.26/)
+
 ## Setup
 
 - clone repo
