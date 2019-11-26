@@ -13,12 +13,12 @@ trait('DatabaseTransactions')
 test('Should show main page', async ({ browser }) => {
   const page = await browser.visit('/')
   await page.assertHas('TinyURL')
-})
+}).timeout(6000)
 
 test('Should show cookie message', async ({ browser }) => {
   const page = await browser.visit('/')
   await page.assertHas('accept those cookies')
-})
+}).timeout(6000)
 
 test('Should show custom 404-page if url not found in db', async ({
   browser,
@@ -27,7 +27,7 @@ test('Should show custom 404-page if url not found in db', async ({
   await page.assertHas(
     '404\n\nWe are sorry to inform you that the requested url was not found.'
   )
-})
+}).timeout(6000)
 
 test('Should be able to shorten an url, redirect back and show tinyfied url', async ({
   browser,
@@ -41,7 +41,7 @@ test('Should be able to shorten an url, redirect back and show tinyfied url', as
     .waitForNavigation()
     .assertPath('/')
     .assertHas(testUrl)
-})
+}).timeout(6000)
 
 test('User should see 10 latest urls', async ({ browser }) => {
   const page = await browser.visit('/')
@@ -70,7 +70,7 @@ test('User should see 10 latest urls', async ({ browser }) => {
   for (const url of urls.slice(1)) {
     await page.assertHas(url)
   }
-})
+}).timeout(10000)
 
 test('User should be able to copy the shortened url to clipboard with copy button', async ({
   assert,
@@ -91,7 +91,7 @@ test('User should be able to copy the shortened url to clipboard with copy butto
   )
 
   assert.equal(clipboardy.readSync(), tinyTestUrl)
-})
+}).timeout(6000)
 
 test('Should redirect when supplied tinyUrl', async ({ assert, client }) => {
   const appUrl = Config.get('app.appUrl')
@@ -104,4 +104,4 @@ test('Should redirect when supplied tinyUrl', async ({ assert, client }) => {
   const response = await client.get(`/${hashed}`).end()
 
   assert.equal(response._res.redirects[0], `${appUrl}/`)
-})
+}).timeout(6000)
