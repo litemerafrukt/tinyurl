@@ -6,19 +6,24 @@
   "main": "index.js",
   "scripts": {
     "start": "node server.js",
-    "test": "node ace test"
+    "start:dev": "npx @adonisjs/cli serve --dev",
+    "test": "node ace test",
+    "migrate": "node ace migration:run",
+    "create:env": "cp .env.example .env",
+    "create:key": "npx @adonisjs/cli key:generate"
   },
   "keywords": [
-    "adonisjs",
+    "TinyUrl",
     "adonis-app"
   ],
   "author": "",
-  "license": "UNLICENSED",
+  "license": "MIT",
   "private": true,
   "dependencies": {
     "@adonisjs/ace": "^5.0.8",
     "@adonisjs/auth": "^3.0.7",
     "@adonisjs/bodyparser": "^2.0.5",
+    "@adonisjs/cli": "^4.0.12",
     "@adonisjs/cors": "^1.0.7",
     "@adonisjs/fold": "^4.0.9",
     "@adonisjs/framework": "^5.0.9",
