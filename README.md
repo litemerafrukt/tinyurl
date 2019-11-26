@@ -15,7 +15,7 @@ To run in development mode with auto-reload I recommend to install the adonis co
 
 ### Note about .env
 
-The APP_KEY in the .env file is there to get you upp to speed in the dev environment, to generate a new key run ` npm run create:key`` or `adonis key:generate` if you have adonis-cli installed.
+The APP_KEY in the .env file is there to get you upp to speed in the dev environment, to generate a new key run `npm run create:key` or `adonis key:generate` if you have adonis-cli installed.
 
 SHORT_URL_SEED is used to calculate a hash from a database id
 and SHORT_URL_ALPHABET is the characters used in the hash.
