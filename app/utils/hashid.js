@@ -3,12 +3,12 @@
 const Config = use('Config')
 const Hashids = require('hashids/cjs')
 
-const appSecret = Config.get('app.appSecret')
+const shortUrlSeed = Config.get('app.shortUrlSeed')
 const shortUrlAlphabet = Config.get('app.shortUrlAlphabet')
 
 class HashId {
   constructor() {
-    this.hashids = new Hashids(appSecret, 6, shortUrlAlphabet)
+    this.hashids = new Hashids(shortUrlSeed, 6, shortUrlAlphabet)
   }
 
   encode(id) {
